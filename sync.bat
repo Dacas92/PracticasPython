@@ -1,24 +1,31 @@
 @echo off
-title Sincronizar PracticasPython con GitHub
-
 cd /d C:\Users\cxdig\git\PracticasPython
 
-echo ======================================
-echo Sincronizando repositorio...
-echo ======================================
+echo ==============================
+echo Sincronizando con GitHub...
+echo ==============================
 
 git add .
-
-set /p mensaje="Mensaje del commit: "
-
-if "%mensaje%"=="" set mensaje=Actualizacion
-
-git commit -m "%mensaje%"
-
-git push origin main
+git commit -m "auto sync"
+git push
 
 echo.
-echo ======================================
-echo Proceso finalizado.
-echo ======================================
+echo ==============================
+echo Sincronizacion completada
+echo ==============================
+
+echo.
+choice /C SN /M "Quieres abrir el repositorio en Microsoft Edge?"
+
+if errorlevel 2 goto no
+if errorlevel 1 goto si
+
+:si
+start msedge "https://github.com/Dacas92/PracticasPython"
+goto end
+
+:no
+echo No se abrira el navegador.
+
+:end
 pause
